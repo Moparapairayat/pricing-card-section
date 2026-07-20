@@ -13,6 +13,14 @@ Built entirely with pure HTML5, CSS3, and JavaScript—zero frameworks, zero ext
 
 ---
 
+## 📂 Folder Structure
+
+The repository is organized into distinct versions for ease of integration:
+- 📂 [`/html`](file:///d:/pricing-card-section/html) — Vanilla HTML5, CSS3, and JavaScript version.
+- 📂 [`/react`](file:///d:/pricing-card-section/react) — Scopes React component version.
+
+---
+
 ## 🎥 Live Preview
 
 <p align="center">
@@ -53,11 +61,43 @@ git clone https://github.com/Moparapairayat/pricing-card-section.git
 ```
 
 ### 2. Open the file
-Navigate to the directory and open the file directly in your browser or run via live server:
+Navigate to the directory and open the HTML file directly in your browser:
 ```bash
 cd pricing-card-section
-# Open pricing2.html in browser
+# Open html/pricing2.html in browser
 ```
+
+---
+
+## ⚛ React Component Integration
+
+The project includes a ready-to-use, high-performance React component version located in the [`/react`](file:///d:/pricing-card-section/react) directory.
+
+### Files Included:
+- 📄 [`PricingSection.jsx`](file:///d:/pricing-card-section/react/PricingSection.jsx) — Fully featured React component.
+- 🎨 [`PricingSection.css`](file:///d:/pricing-card-section/react/PricingSection.css) — Component stylesheet (exact copy of the original HTML styling).
+- 💻 [`App.jsx`](file:///d:/pricing-card-section/react/App.jsx) — Sample code showing component integration.
+
+### Quick Start with React:
+
+1. Copy [`PricingSection.jsx`](file:///d:/pricing-card-section/react/PricingSection.jsx) and [`PricingSection.css`](file:///d:/pricing-card-section/react/PricingSection.css) into your React project (e.g., in `src/components/Pricing`).
+2. Import and use it in your layout:
+
+```jsx
+import React from 'react';
+import PricingSection from './components/Pricing/PricingSection';
+
+function App() {
+  return <PricingSection />;
+}
+```
+
+---
+
+## ✨ Premium UI/UX Features
+
+- **Live Currency Selector:** Integrates a glassmorphism currency select dropdown supporting BDT (৳), USD ($), and EUR (€) that converts pricing, daily rates, and triggers numerical transitions dynamically.
+- **Interactive Feature Tooltips:** CSS-driven tooltips next to capabilities that show rich context on hover with zero javascript overhead.
 
 ---
 

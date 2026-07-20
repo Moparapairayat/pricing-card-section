@@ -184,6 +184,54 @@
             z-index: 10;
         }
 
+        .currency-selector-wrapper {
+            position: relative;
+            margin-left: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .currency-selector-wrapper::after {
+            content: '▾';
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            position: absolute;
+            right: 0.75rem;
+            pointer-events: none;
+        }
+
+        #currency-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.4rem 2.2rem 0.4rem 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        #currency-select:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-strong);
+            color: var(--text-primary);
+        }
+
+        #currency-select:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+        }
+
+        #currency-select option {
+            background-color: #0c0c12;
+            color: var(--text-primary);
+        }
+
         .toggle-label {
             font-size: 0.95rem;
             font-weight: 600;
@@ -508,6 +556,58 @@
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.5s var(--ease-smooth);
+            position: relative;
+        }
+
+        .feature-info-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 0.35rem;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            vertical-align: middle;
+        }
+
+        .feature-info-icon:hover {
+            color: #8b5cf6;
+        }
+
+        .feature-info-icon svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .feature-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 20px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.4;
+            width: 220px;
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(139, 92, 246, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            pointer-events: none;
+            text-align: left;
+        }
+
+        .feature-info-icon:hover + .feature-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
 
         .card-wrapper.visible .feature-row {
@@ -908,6 +1008,14 @@
                 <span class="toggle-slider"></span>
             </button>
             <span class="toggle-label active" id="toggle-yearly">Yearly <span class="discount-badge">Save 20%</span></span>
+            
+            <div class="currency-selector-wrapper">
+                <select id="currency-select" aria-label="Select Currency">
+                    <option value="BDT">৳ BDT</option>
+                    <option value="USD">$ USD</option>
+                    <option value="EUR">€ EUR</option>
+                </select>
+            </div>
         </div>
 
         <div class="pricing-grid">
@@ -967,7 +1075,17 @@
                                         </path>
                                     </svg></div>
                                 <div class="feature-text-content">
-                                    <h4 class="feature-title">Core AI Fundamentals</h4>
+                                    <h4 class="feature-title">
+                                        Core AI Fundamentals
+                                        <span class="feature-info-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-tooltip">Hands-on syllabus covering machine learning math, neural architectures, and custom dataset preprocessing.</span>
+                                    </h4>
                                     <p class="feature-desc">Master Python, PyTorch, and neural networks.</p>
                                 </div>
                             </div>
@@ -1105,7 +1223,17 @@
                                         </path>
                                     </svg></div>
                                 <div class="feature-text-content">
-                                    <h4 class="feature-title">Dedicated AI Mentorship</h4>
+                                    <h4 class="feature-title">
+                                        Dedicated AI Mentorship
+                                        <span class="feature-info-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-tooltip">Weekly 1-on-1 calls with professional AI engineers to debug code and discuss architecture patterns.</span>
+                                    </h4>
                                     <p class="feature-desc">Personalized guidance from industry pros.</p>
                                 </div>
                             </div>
@@ -1235,7 +1363,17 @@
                                         </path>
                                     </svg></div>
                                 <div class="feature-text-content">
-                                    <h4 class="feature-title">Founding Engineer Track</h4>
+                                    <h4 class="feature-title">
+                                        Founding Engineer Track
+                                        <span class="feature-info-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-tooltip">Product ideation and go-to-market strategies tailored to launch profitable indie products.</span>
+                                    </h4>
                                     <p class="feature-desc">1-on-1 product roadmapping and launch support.</p>
                                 </div>
                             </div>
@@ -1259,7 +1397,17 @@
                                         </path>
                                     </svg></div>
                                 <div class="feature-text-content">
-                                    <h4 class="feature-title">SaaS Boilerplate</h4>
+                                    <h4 class="feature-title">
+                                        SaaS Boilerplate
+                                        <span class="feature-info-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-tooltip">Pre-configured tech stack containing Auth, DB, billing, and AI API wrappers to build apps in hours.</span>
+                                    </h4>
                                     <p class="feature-desc">Enterprise-grade Next.js & AI agent boilerplate.</p>
                                 </div>
                             </div>
@@ -1295,17 +1443,54 @@
                 rootMargin: "0px 0px -50px 0px"
             };
 
+            const currencyData = {
+                BDT: {
+                    symbol: '৳',
+                    isDecimal: false,
+                    plans: [
+                        { monthly: 499, yearly: 4999, oldMonthly: '৳799', oldYearly: '৳8,000', dailyMonthly: '≈ ৳16/day', dailyYearly: '≈ ৳14/day' },
+                        { monthly: 699, yearly: 6999, oldMonthly: '৳1,199', oldYearly: '৳12,000', dailyMonthly: '≈ ৳23/day', dailyYearly: '≈ ৳19/day' },
+                        { monthly: 1499, yearly: 14999, oldMonthly: '৳2,499', oldYearly: '৳25,000', dailyMonthly: '≈ ৳50/day', dailyYearly: '≈ ৳41/day' }
+                    ]
+                },
+                USD: {
+                    symbol: '$',
+                    isDecimal: true,
+                    plans: [
+                        { monthly: 4.99, yearly: 49.99, oldMonthly: '$7.99', oldYearly: '$79.99', dailyMonthly: '≈ $0.16/day', dailyYearly: '≈ $0.14/day' },
+                        { monthly: 6.99, yearly: 69.99, oldMonthly: '$11.99', oldYearly: '$119.99', dailyMonthly: '≈ $0.23/day', dailyYearly: '≈ $0.19/day' },
+                        { monthly: 14.99, yearly: 149.99, oldMonthly: '$24.99', oldYearly: '$249.99', dailyMonthly: '≈ $0.50/day', dailyYearly: '≈ $0.41/day' }
+                    ]
+                },
+                EUR: {
+                    symbol: '€',
+                    isDecimal: true,
+                    plans: [
+                        { monthly: 4.49, yearly: 44.99, oldMonthly: '€6.99', oldYearly: '€69.99', dailyMonthly: '≈ €0.15/day', dailyYearly: '≈ €0.13/day' },
+                        { monthly: 6.49, yearly: 64.99, oldMonthly: '€10.99', oldYearly: '€109.99', dailyMonthly: '≈ €0.21/day', dailyYearly: '≈ €0.18/day' },
+                        { monthly: 13.49, yearly: 134.99, oldMonthly: '€22.99', oldYearly: '€229.99', dailyMonthly: '≈ €0.45/day', dailyYearly: '≈ €0.37/day' }
+                    ]
+                }
+            };
+
+            let currentCurrency = 'BDT';
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Add visibility class
                         entry.target.classList.add('visible');
 
-                        // Trigger Number Counter
                         const priceEl = entry.target.querySelector('.current-price');
                         if (priceEl && !priceEl.classList.contains('counted')) {
-                            const targetAttr = isYearly ? 'data-yearly' : 'data-monthly';
-                            animateValue(priceEl, 0, parseInt(priceEl.getAttribute(targetAttr)), 1500);
+                            let cardIdx = 0;
+                            if (entry.target.classList.contains('card-wrapper-elite')) cardIdx = 1;
+                            else if (entry.target.classList.contains('card-wrapper-ultimate')) cardIdx = 2;
+
+                            const currency = currencyData[currentCurrency];
+                            const plan = currency.plans[cardIdx];
+                            const targetVal = isYearly ? plan.yearly : plan.monthly;
+                            
+                            animateValue(priceEl, 0, targetVal, 1500, currency.isDecimal);
                             priceEl.classList.add('counted');
                         }
 
@@ -1316,9 +1501,7 @@
 
             cards.forEach(card => observer.observe(card));
 
-            // --- 2. Number Counter Animation ---
-            // An elegant easing function to make the number scroll slow down at the end
-            function animateValue(obj, start, end, duration) {
+            function animateValue(obj, start, end, duration, isDecimal = false) {
                 let startTimestamp = null;
                 const easeOutExpo = (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 
@@ -1326,19 +1509,23 @@
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                     const easedProgress = easeOutExpo(progress);
+                    const rawVal = easedProgress * (end - start) + start;
 
-                    obj.innerHTML = Math.floor(easedProgress * (end - start) + start).toLocaleString('en-BD');
+                    if (isDecimal) {
+                        obj.innerHTML = rawVal.toFixed(2);
+                    } else {
+                        obj.innerHTML = Math.floor(rawVal).toLocaleString('en-BD');
+                    }
 
                     if (progress < 1) {
                         window.requestAnimationFrame(step);
                     } else {
-                        obj.innerHTML = end.toLocaleString('en-BD');
+                        obj.innerHTML = isDecimal ? end.toFixed(2) : end.toLocaleString('en-BD');
                     }
                 };
                 window.requestAnimationFrame(step);
             }
 
-            // --- 3. Throttled Mouse Spotlight Effect (Elite & Ultimate) ---
             const interactiveCards = document.querySelectorAll('.card-elite, .card-ultimate');
             let isTicking = false;
 
@@ -1359,7 +1546,6 @@
                 });
             });
 
-            // --- 4. Premium Magnetic Button Interaction ---
             const magneticContainer = document.querySelector('.magnetic-btn-container');
 
             if (magneticContainer) {
@@ -1374,10 +1560,8 @@
                     const distX = mouseX - centerX;
                     const distY = mouseY - centerY;
 
-                    // Friction controls how "heavy" the button feels.
                     const friction = 0.15;
 
-                    // Clamp the movement to avoid crazy flying buttons
                     const moveX = Math.max(-15, Math.min(15, distX * friction));
                     const moveY = Math.max(-15, Math.min(15, distY * friction));
 
@@ -1385,12 +1569,10 @@
                 });
 
                 magneticContainer.addEventListener('mouseleave', () => {
-                    // Smooth return to origin handled by CSS transition
                     magneticContainer.style.transform = `translate(0px, 0px)`;
                 });
             }
 
-            // --- 5. Monthly / Yearly Billing Toggle Logic ---
             const toggleBtn = document.getElementById('billing-toggle');
             const toggleMonthly = document.getElementById('toggle-monthly');
             const toggleYearly = document.getElementById('toggle-yearly');
@@ -1409,24 +1591,39 @@
                     toggleMonthly.classList.add('active');
                 }
 
-                cards.forEach(card => {
+                updatePricing(true);
+            }
+
+            function updatePricing(animate = true) {
+                const currency = currencyData[currentCurrency];
+                
+                cards.forEach((card, index) => {
                     const priceEl = card.querySelector('.current-price');
                     const oldPriceEl = card.querySelector('.old-price');
                     const suffixEl = card.querySelector('.price-suffix');
                     const dailyEl = card.querySelector('.monthly-equivalent span');
+                    const currencyEl = card.querySelector('.currency');
+                    
+                    const plan = currency.plans[index];
+                    const targetVal = isYearly ? plan.yearly : plan.monthly;
+                    const oldPriceVal = isYearly ? plan.oldYearly : plan.oldMonthly;
+                    const dailyTextVal = isYearly ? plan.dailyYearly : plan.dailyMonthly;
+
+                    if (currencyEl) {
+                        currencyEl.innerText = currency.symbol;
+                    }
 
                     if (priceEl) {
-                        const targetAttr = isYearly ? 'data-yearly' : 'data-monthly';
-                        const targetVal = parseInt(priceEl.getAttribute(targetAttr));
-                        const currentVal = parseInt(priceEl.innerText.replace(/,/g, '')) || 0;
-
-                        // Trigger animation transition between monthly and yearly rates
-                        animateValue(priceEl, currentVal, targetVal, 800);
+                        const currentVal = parseFloat(priceEl.innerText.replace(/,/g, '')) || 0;
+                        if (animate) {
+                            animateValue(priceEl, currentVal, targetVal, 800, currency.isDecimal);
+                        } else {
+                            priceEl.innerText = currency.isDecimal ? targetVal.toFixed(2) : targetVal.toLocaleString('en-BD');
+                        }
                     }
 
                     if (oldPriceEl) {
-                        const targetAttr = isYearly ? 'data-yearly' : 'data-monthly';
-                        oldPriceEl.innerText = oldPriceEl.getAttribute(targetAttr);
+                        oldPriceEl.innerText = oldPriceVal;
                     }
 
                     if (suffixEl) {
@@ -1434,9 +1631,22 @@
                     }
 
                     if (dailyEl) {
-                        const targetAttr = isYearly ? 'data-yearly-daily' : 'data-monthly-daily';
-                        dailyEl.innerText = dailyEl.getAttribute(targetAttr);
+                        dailyEl.innerText = dailyTextVal;
                     }
+                });
+            }
+
+            if (toggleBtn && toggleMonthly && toggleYearly) {
+                toggleBtn.addEventListener('click', () => updateBilling(!isYearly));
+                toggleMonthly.addEventListener('click', () => updateBilling(false));
+                toggleYearly.addEventListener('click', () => updateBilling(true));
+            }
+
+            const currencySelect = document.getElementById('currency-select');
+            if (currencySelect) {
+                currencySelect.addEventListener('change', (e) => {
+                    currentCurrency = e.target.value;
+                    updatePricing(true);
                 });
             }
 
