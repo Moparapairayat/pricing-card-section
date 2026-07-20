@@ -26,6 +26,10 @@ yarn-error.log*
 .cache/
 .eslintcache
 
+# Test & Scratch Apps
+*-test/
+.astro/
+
 # OS / Editor
 .DS_Store
 Thumbs.db

@@ -7,13 +7,15 @@
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
   <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue.js" />
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white" alt="Svelte" />
+  <img src="https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white" alt="Astro" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
 A production-grade, high-converting **SaaS pricing section** for *Mopara Pair Ayat* — built once, shipped everywhere. It pairs deep, ambient visuals with genuinely useful pricing UX (live currency conversion, billing-cycle math, animated counters) so visitors actually understand what they're paying.
 
-The same layout and styling ship in **four stacks** — pick yours and drop it in.
+The same layout and styling ship across **six modern web tech stacks** — pick yours and drop it in.
 
 ---
 
@@ -59,8 +61,16 @@ pricing-card-section/
 │   └── components/
 │       ├── PricingSection.tsx
 │       └── PricingSection.css
+├── svelte/               # Svelte 4 & 5 component (TypeScript)
+│   ├── PricingSection.svelte
+│   ├── PricingSection.css
+│   └── App.svelte        # usage example
+├── astro/                # Astro component (.astro + CSS)
+│   ├── PricingSection.astro
+│   ├── PricingSection.css
+│   └── index.astro       # usage example
 ├── .gitignore
-└── README.md
+└── README.md             # Master Documentation
 ```
 
 > **Styling is shared.** Every framework imports the same `PricingSection.css` (the HTML file inlines it). Change the look in one place and all versions stay in sync.
@@ -87,7 +97,7 @@ export default function App() {
 ```
 
 ### Vue 3
-Copy `vue/PricingSection.vue` + `vue/PricingSection.css` (or `@import` the CSS inside the component) and use it:
+Copy `vue/PricingSection.vue` + `vue/PricingSection.css` and use it:
 ```vue
 <script setup>
 import PricingSection from './PricingSection.vue';
@@ -106,6 +116,26 @@ import PricingSection from '@/components/PricingSection';
 export default function Page() {
   return <PricingSection />;
 }
+```
+
+### Svelte 4 & 5
+Copy `svelte/PricingSection.svelte` + `svelte/PricingSection.css` into `src/lib/components`:
+```svelte
+<script>
+  import PricingSection from '$lib/components/PricingSection.svelte';
+</script>
+
+<PricingSection />
+```
+
+### Astro
+Copy `astro/PricingSection.astro` + `astro/PricingSection.css` into `src/components`:
+```astro
+---
+import PricingSection from '../components/PricingSection.astro';
+---
+
+<PricingSection />
 ```
 
 ---
@@ -144,7 +174,7 @@ All visual tokens live in CSS variables at the top of the stylesheet:
 
 - **Markup:** Semantic HTML5
 - **Styling:** CSS Custom Properties, CSS Grid, Flexbox, `backdrop-filter` glass, SVG `feTurbulence` / `feDisplacementMap` filters, `:has()` peer dimming
-- **Logic:** Vanilla JS · React Hooks · Vue Composition API · Next.js Client Component
+- **Logic:** Vanilla JS · React Hooks · Vue Composition API · Next.js Client Component · Svelte 4/5 · Astro
 - **Animation:** `requestAnimationFrame` counters, CSS keyframes, `IntersectionObserver` scroll-reveal, spring cubic-beziers
 - **Font:** [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts)
 
