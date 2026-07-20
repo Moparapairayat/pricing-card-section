@@ -1976,6 +1976,15 @@
                     updatePricing(true);
                 });
             });
+
+            // Mouse-tracking glow
+            const mouseGlow = document.getElementById('mouse-glow');
+            if (mouseGlow) {
+                document.addEventListener('mousemove', (e) => {
+                    mouseGlow.style.left = e.clientX + 'px';
+                    mouseGlow.style.top = e.clientY + 'px';
+                });
+            }
         });
     </script>
 </body>
