@@ -1116,3 +1116,93 @@ body {
 .card-wrapper-ultimate:hover .spotlight-overlay {
     opacity: 1;
 }
+
+/* ── NEXT-GEN ULTRA MICRO-ANIMATIONS ─────────────────────────────────────── */
+
+/* 1. Shimmer Light Sweep on Cards */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    z-index: 15;
+}
+
+.card:hover::after {
+    left: 100%;
+}
+
+/* 2. Light Sweep Effect on CTA Buttons */
+.btn-premium {
+    overflow: hidden;
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 55%
+    );
+    transform: rotate(25deg) translateY(-100%);
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.btn-premium:hover::before {
+    transform: rotate(25deg) translateY(100%);
+}
+
+/* 3. Glowing Pulsing Star on Flagship Badge */
+@keyframes starPulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.4));
+    }
+    50% {
+        transform: scale(1.25) rotate(18deg);
+        filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.9));
+    }
+}
+
+.badge-ultimate svg {
+    animation: starPulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 4. Feature Row Icon Pop & Tilt on Hover */
+.feature-row {
+    cursor: default;
+}
+
+.feature-row:hover .feature-icon-wrapper {
+    transform: scale(1.18) rotate(6deg);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+.feature-row:hover .feature-title {
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+/* 5. Smooth Price Glow Pulse on Currency Switch */
+.current-price {
+    transition: text-shadow 0.4s ease, color 0.3s ease;
+}
+
+.card:hover .current-price {
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
