@@ -99,6 +99,7 @@ export default function PricingSection() {
     const [isYearly, setIsYearly] = useState(true);
     const [currency, setCurrency] = useState('BDT');
     const [visibleCards, setVisibleCards] = useState({ 0: false, 1: false, 2: false });
+    const [pulseActive, setPulseActive] = useState(false);
     const cardRefs = useRef([]);
 
     // Currency Definitions Config
@@ -107,27 +108,45 @@ export default function PricingSection() {
             symbol: '৳',
             isDecimal: false,
             plans: [
-                { monthly: 499, yearly: 4999, oldMonthly: '৳799', oldYearly: '৳8,000', dailyMonthly: '≈ ৳16/day', dailyYearly: '≈ ৳14/day' },
-                { monthly: 699, yearly: 6999, oldMonthly: '৳1,199', oldYearly: '৳12,000', dailyMonthly: '≈ ৳23/day', dailyYearly: '≈ ৳19/day' },
-                { monthly: 1499, yearly: 14999, oldMonthly: '৳2,499', oldYearly: '৳25,000', dailyMonthly: '≈ ৳50/day', dailyYearly: '≈ ৳41/day' }
+                { monthly: 499, yearly: 4999, oldMonthly: '৳799', oldYearly: '৳8,000', dailyMonthly: '≈ ৳16/day', dailyYearly: '≈ ৳14/day', savingsYearly: 'Save ৳3,001/yr' },
+                { monthly: 699, yearly: 6999, oldMonthly: '৳1,199', oldYearly: '৳12,000', dailyMonthly: '≈ ৳23/day', dailyYearly: '≈ ৳19/day', savingsYearly: 'Save ৳5,001/yr' },
+                { monthly: 1499, yearly: 14999, oldMonthly: '৳2,499', oldYearly: '৳25,000', dailyMonthly: '≈ ৳50/day', dailyYearly: '≈ ৳41/day', savingsYearly: 'Save ৳10,001/yr' }
             ]
         },
         USD: {
             symbol: '$',
             isDecimal: true,
             plans: [
-                { monthly: 4.99, yearly: 49.99, oldMonthly: '$7.99', oldYearly: '$79.99', dailyMonthly: '≈ $0.16/day', dailyYearly: '≈ $0.14/day' },
-                { monthly: 6.99, yearly: 69.99, oldMonthly: '$11.99', oldYearly: '$119.99', dailyMonthly: '≈ $0.23/day', dailyYearly: '≈ $0.19/day' },
-                { monthly: 14.99, yearly: 149.99, oldMonthly: '$24.99', oldYearly: '$249.99', dailyMonthly: '≈ $0.50/day', dailyYearly: '≈ $0.41/day' }
+                { monthly: 4.99, yearly: 49.99, oldMonthly: '$7.99', oldYearly: '$79.99', dailyMonthly: '≈ $0.16/day', dailyYearly: '≈ $0.14/day', savingsYearly: 'Save $30.00/yr' },
+                { monthly: 6.99, yearly: 69.99, oldMonthly: '$11.99', oldYearly: '$119.99', dailyMonthly: '≈ $0.23/day', dailyYearly: '≈ $0.19/day', savingsYearly: 'Save $50.00/yr' },
+                { monthly: 14.99, yearly: 149.99, oldMonthly: '$24.99', oldYearly: '$249.99', dailyMonthly: '≈ $0.50/day', dailyYearly: '≈ $0.41/day', savingsYearly: 'Save $100.00/yr' }
             ]
         },
         EUR: {
             symbol: '€',
             isDecimal: true,
             plans: [
-                { monthly: 4.49, yearly: 44.99, oldMonthly: '€6.99', oldYearly: '€69.99', dailyMonthly: '≈ €0.15/day', dailyYearly: '≈ €0.13/day' },
-                { monthly: 6.49, yearly: 64.99, oldMonthly: '€10.99', oldYearly: '€109.99', dailyMonthly: '≈ €0.21/day', dailyYearly: '≈ €0.18/day' },
-                { monthly: 13.49, yearly: 134.99, oldMonthly: '€22.99', oldYearly: '€229.99', dailyMonthly: '≈ €0.45/day', dailyYearly: '≈ €0.37/day' }
+                { monthly: 4.49, yearly: 44.99, oldMonthly: '€6.99', oldYearly: '€69.99', dailyMonthly: '≈ €0.15/day', dailyYearly: '≈ €0.13/day', savingsYearly: 'Save €25.00/yr' },
+                { monthly: 6.49, yearly: 64.99, oldMonthly: '€10.99', oldYearly: '€109.99', dailyMonthly: '≈ €0.21/day', dailyYearly: '≈ €0.18/day', savingsYearly: 'Save €45.00/yr' },
+                { monthly: 13.49, yearly: 134.99, oldMonthly: '€22.99', oldYearly: '€229.99', dailyMonthly: '≈ €0.45/day', dailyYearly: '≈ €0.37/day', savingsYearly: 'Save €95.00/yr' }
+            ]
+        },
+        TRY: {
+            symbol: '₺',
+            isDecimal: false,
+            plans: [
+                { monthly: 149, yearly: 1490, oldMonthly: '₺249', oldYearly: '₺2,490', dailyMonthly: '≈ ₺5/day', dailyYearly: '≈ ₺4/day', savingsYearly: 'Save ₺1,000/yr' },
+                { monthly: 219, yearly: 2190, oldMonthly: '₺349', oldYearly: '₺3,490', dailyMonthly: '≈ ₺7/day', dailyYearly: '≈ ₺6/day', savingsYearly: 'Save ₺1,300/yr' },
+                { monthly: 449, yearly: 4490, oldMonthly: '₺749', oldYearly: '₺7,490', dailyMonthly: '≈ ₺15/day', dailyYearly: '≈ ₺12/day', savingsYearly: 'Save ₺3,000/yr' }
+            ]
+        },
+        IRR: {
+            symbol: '﷼',
+            isDecimal: false,
+            plans: [
+                { monthly: 250000, yearly: 2500000, oldMonthly: '﷼400,000', oldYearly: '﷼4,000,000', dailyMonthly: '≈ ﷼8.3k/day', dailyYearly: '≈ ﷼6.8k/day', savingsYearly: 'Save ﷼1,500,000/yr' },
+                { monthly: 350000, yearly: 3500000, oldMonthly: '﷼600,000', oldYearly: '﷼6,000,000', dailyMonthly: '≈ ﷼11.6k/day', dailyYearly: '≈ ﷼9.5k/day', savingsYearly: 'Save ﷼2,500,000/yr' },
+                { monthly: 750000, yearly: 7500000, oldMonthly: '﷼1,200,000', oldYearly: '﷼12,000,000', dailyMonthly: '≈ ﷼25k/day', dailyYearly: '≈ ﷼20.5k/day', savingsYearly: 'Save ﷼4,500,000/yr' }
             ]
         }
     };
@@ -159,6 +178,24 @@ export default function PricingSection() {
             observer.disconnect();
         };
     }, []);
+
+    // Pulse savings banner on changes to billing toggle
+    useEffect(() => {
+        if (isYearly) {
+            setPulseActive(true);
+            const timer = setTimeout(() => setPulseActive(false), 800);
+            return () => clearTimeout(timer);
+        }
+    }, [isYearly]);
+
+    // Pulse savings banner on currency change
+    useEffect(() => {
+        if (isYearly) {
+            setPulseActive(true);
+            const timer = setTimeout(() => setPulseActive(false), 800);
+            return () => clearTimeout(timer);
+        }
+    }, [currency]);
 
     // Throttled mouse spotlight event handler
     const handleMouseMoveSpotlight = (e) => {
@@ -236,6 +273,8 @@ export default function PricingSection() {
                             <option value="BDT">৳ BDT</option>
                             <option value="USD">$ USD</option>
                             <option value="EUR">€ EUR</option>
+                            <option value="TRY">₺ TRY</option>
+                            <option value="IRR">﷼ IRR</option>
                         </select>
                     </div>
                 </div>
@@ -280,6 +319,15 @@ export default function PricingSection() {
                                             <polyline points="12 6 12 12 16 14"></polyline>
                                         </svg>
                                         <span>{isYearly ? currentCurrency.plans[0].dailyYearly : currentCurrency.plans[0].dailyMonthly}</span>
+                                    </div>
+                                    <div className={`savings-tracker-banner ${isYearly ? 'active' : ''} ${pulseActive ? 'pulse' : ''}`}>
+                                        <span className="savings-tracker-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                            </svg>
+                                        </span>
+                                        <span className="savings-tracker-text">{currentCurrency.plans[0].savingsYearly}</span>
                                     </div>
                                 </div>
 
@@ -403,6 +451,15 @@ export default function PricingSection() {
                                             <polyline points="12 6 12 12 16 14"></polyline>
                                         </svg>
                                         <span>{isYearly ? currentCurrency.plans[1].dailyYearly : currentCurrency.plans[1].dailyMonthly}</span>
+                                    </div>
+                                    <div className={`savings-tracker-banner ${isYearly ? 'active' : ''} ${pulseActive ? 'pulse' : ''}`}>
+                                        <span className="savings-tracker-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                            </svg>
+                                        </span>
+                                        <span className="savings-tracker-text">{currentCurrency.plans[1].savingsYearly}</span>
                                     </div>
                                 </div>
 
@@ -548,6 +605,15 @@ export default function PricingSection() {
                                             <polyline points="12 6 12 12 16 14"></polyline>
                                         </svg>
                                         <span>{isYearly ? currentCurrency.plans[2].dailyYearly : currentCurrency.plans[2].dailyMonthly}</span>
+                                    </div>
+                                    <div className={`savings-tracker-banner ${isYearly ? 'active' : ''} ${pulseActive ? 'pulse' : ''}`}>
+                                        <span className="savings-tracker-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                            </svg>
+                                        </span>
+                                        <span className="savings-tracker-text">{currentCurrency.plans[2].savingsYearly}</span>
                                     </div>
                                 </div>
 

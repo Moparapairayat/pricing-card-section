@@ -475,6 +475,57 @@
             color: var(--text-secondary);
         }
 
+        .savings-tracker-banner {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.65rem;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 8px;
+            padding: 0.35rem 0.6rem;
+            width: fit-content;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .savings-tracker-banner.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes greenPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+                background-color: rgba(16, 185, 129, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+                background-color: rgba(16, 185, 129, 0.06);
+            }
+        }
+
+        .savings-tracker-banner.pulse {
+            animation: greenPulse 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .savings-tracker-icon {
+            display: inline-flex;
+            color: #10b981;
+        }
+
+        .savings-tracker-icon svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .savings-tracker-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #10b981;
+        }
+
         /* Value Proposition */
         .value-prop {
             font-size: 0.85rem;
@@ -1014,6 +1065,8 @@
                     <option value="BDT">৳ BDT</option>
                     <option value="USD">$ USD</option>
                     <option value="EUR">€ EUR</option>
+                    <option value="TRY">₺ TRY</option>
+                    <option value="IRR">﷼ IRR</option>
                 </select>
             </div>
         </div>
@@ -1046,6 +1099,15 @@
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
                                 <span data-monthly-daily="≈ ৳16/day" data-yearly-daily="≈ ৳14/day">≈ ৳14/day</span>
+                            </div>
+                            <div class="savings-tracker-banner active">
+                                <span class="savings-tracker-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                    </svg>
+                                </span>
+                                <span class="savings-tracker-text">Save ৳3,001/yr</span>
                             </div>
                         </div>
 
@@ -1182,6 +1244,15 @@
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
                                 <span data-monthly-daily="≈ ৳23/day" data-yearly-daily="≈ ৳19/day">≈ ৳19/day</span>
+                            </div>
+                            <div class="savings-tracker-banner active">
+                                <span class="savings-tracker-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                    </svg>
+                                </span>
+                                <span class="savings-tracker-text">Save ৳5,001/yr</span>
                             </div>
                         </div>
 
@@ -1321,6 +1392,15 @@
                                 </svg>
                                 <span data-monthly-daily="≈ ৳50/day" data-yearly-daily="≈ ৳41/day">≈ ৳41/day</span>
                             </div>
+                            <div class="savings-tracker-banner active">
+                                <span class="savings-tracker-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                    </svg>
+                                </span>
+                                <span class="savings-tracker-text">Save ৳10,001/yr</span>
+                            </div>
                         </div>
 
                         <p class="value-prop">For developers serious about building high-income AI SaaS and securing top
@@ -1448,27 +1528,45 @@
                     symbol: '৳',
                     isDecimal: false,
                     plans: [
-                        { monthly: 499, yearly: 4999, oldMonthly: '৳799', oldYearly: '৳8,000', dailyMonthly: '≈ ৳16/day', dailyYearly: '≈ ৳14/day' },
-                        { monthly: 699, yearly: 6999, oldMonthly: '৳1,199', oldYearly: '৳12,000', dailyMonthly: '≈ ৳23/day', dailyYearly: '≈ ৳19/day' },
-                        { monthly: 1499, yearly: 14999, oldMonthly: '৳2,499', oldYearly: '৳25,000', dailyMonthly: '≈ ৳50/day', dailyYearly: '≈ ৳41/day' }
+                        { monthly: 499, yearly: 4999, oldMonthly: '৳799', oldYearly: '৳8,000', dailyMonthly: '≈ ৳16/day', dailyYearly: '≈ ৳14/day', savingsYearly: 'Save ৳3,001/yr' },
+                        { monthly: 699, yearly: 6999, oldMonthly: '৳1,199', oldYearly: '৳12,000', dailyMonthly: '≈ ৳23/day', dailyYearly: '≈ ৳19/day', savingsYearly: 'Save ৳5,001/yr' },
+                        { monthly: 1499, yearly: 14999, oldMonthly: '৳2,499', oldYearly: '৳25,000', dailyMonthly: '≈ ৳50/day', dailyYearly: '≈ ৳41/day', savingsYearly: 'Save ৳10,001/yr' }
                     ]
                 },
                 USD: {
                     symbol: '$',
                     isDecimal: true,
                     plans: [
-                        { monthly: 4.99, yearly: 49.99, oldMonthly: '$7.99', oldYearly: '$79.99', dailyMonthly: '≈ $0.16/day', dailyYearly: '≈ $0.14/day' },
-                        { monthly: 6.99, yearly: 69.99, oldMonthly: '$11.99', oldYearly: '$119.99', dailyMonthly: '≈ $0.23/day', dailyYearly: '≈ $0.19/day' },
-                        { monthly: 14.99, yearly: 149.99, oldMonthly: '$24.99', oldYearly: '$249.99', dailyMonthly: '≈ $0.50/day', dailyYearly: '≈ $0.41/day' }
+                        { monthly: 4.99, yearly: 49.99, oldMonthly: '$7.99', oldYearly: '$79.99', dailyMonthly: '≈ $0.16/day', dailyYearly: '≈ $0.14/day', savingsYearly: 'Save $30.00/yr' },
+                        { monthly: 6.99, yearly: 69.99, oldMonthly: '$11.99', oldYearly: '$119.99', dailyMonthly: '≈ $0.23/day', dailyYearly: '≈ $0.19/day', savingsYearly: 'Save $50.00/yr' },
+                        { monthly: 14.99, yearly: 149.99, oldMonthly: '$24.99', oldYearly: '$249.99', dailyMonthly: '≈ $0.50/day', dailyYearly: '≈ $0.41/day', savingsYearly: 'Save $100.00/yr' }
                     ]
                 },
                 EUR: {
                     symbol: '€',
                     isDecimal: true,
                     plans: [
-                        { monthly: 4.49, yearly: 44.99, oldMonthly: '€6.99', oldYearly: '€69.99', dailyMonthly: '≈ €0.15/day', dailyYearly: '≈ €0.13/day' },
-                        { monthly: 6.49, yearly: 64.99, oldMonthly: '€10.99', oldYearly: '€109.99', dailyMonthly: '≈ €0.21/day', dailyYearly: '≈ €0.18/day' },
-                        { monthly: 13.49, yearly: 134.99, oldMonthly: '€22.99', oldYearly: '€229.99', dailyMonthly: '≈ €0.45/day', dailyYearly: '≈ €0.37/day' }
+                        { monthly: 4.49, yearly: 44.99, oldMonthly: '€6.99', oldYearly: '€69.99', dailyMonthly: '≈ €0.15/day', dailyYearly: '≈ €0.13/day', savingsYearly: 'Save €25.00/yr' },
+                        { monthly: 6.49, yearly: 64.99, oldMonthly: '€10.99', oldYearly: '€109.99', dailyMonthly: '≈ €0.21/day', dailyYearly: '≈ €0.18/day', savingsYearly: 'Save €45.00/yr' },
+                        { monthly: 13.49, yearly: 134.99, oldMonthly: '€22.99', oldYearly: '€229.99', dailyMonthly: '≈ €0.45/day', dailyYearly: '≈ €0.37/day', savingsYearly: 'Save €95.00/yr' }
+                    ]
+                },
+                TRY: {
+                    symbol: '₺',
+                    isDecimal: false,
+                    plans: [
+                        { monthly: 149, yearly: 1490, oldMonthly: '₺249', oldYearly: '₺2,490', dailyMonthly: '≈ ₺5/day', dailyYearly: '≈ ₺4/day', savingsYearly: 'Save ₺1,000/yr' },
+                        { monthly: 219, yearly: 2190, oldMonthly: '₺349', oldYearly: '₺3,490', dailyMonthly: '≈ ₺7/day', dailyYearly: '≈ ₺6/day', savingsYearly: 'Save ₺1,300/yr' },
+                        { monthly: 449, yearly: 4490, oldMonthly: '₺749', oldYearly: '₺7,490', dailyMonthly: '≈ ₺15/day', dailyYearly: '≈ ₺12/day', savingsYearly: 'Save ₺3,000/yr' }
+                    ]
+                },
+                IRR: {
+                    symbol: '﷼',
+                    isDecimal: false,
+                    plans: [
+                        { monthly: 250000, yearly: 2500000, oldMonthly: '﷼400,000', oldYearly: '﷼4,000,000', dailyMonthly: '≈ ﷼8.3k/day', dailyYearly: '≈ ﷼6.8k/day', savingsYearly: 'Save ﷼1,500,000/yr' },
+                        { monthly: 350000, yearly: 3500000, oldMonthly: '﷼600,000', oldYearly: '﷼6,000,000', dailyMonthly: '≈ ﷼11.6k/day', dailyYearly: '≈ ﷼9.5k/day', savingsYearly: 'Save ﷼2,500,000/yr' },
+                        { monthly: 750000, yearly: 7500000, oldMonthly: '﷼1,200,000', oldYearly: '﷼12,000,000', dailyMonthly: '≈ ﷼25k/day', dailyYearly: '≈ ﷼20.5k/day', savingsYearly: 'Save ﷼4,500,000/yr' }
                     ]
                 }
             };
@@ -1492,6 +1590,17 @@
                             
                             animateValue(priceEl, 0, targetVal, 1500, currency.isDecimal);
                             priceEl.classList.add('counted');
+
+                            const savingsTrackerEl = entry.target.querySelector('.savings-tracker-banner');
+                            const savingsTextEl = entry.target.querySelector('.savings-tracker-text');
+                            if (savingsTrackerEl && savingsTextEl) {
+                                if (isYearly) {
+                                    savingsTextEl.innerText = plan.savingsYearly;
+                                    savingsTrackerEl.classList.add('active');
+                                } else {
+                                    savingsTrackerEl.classList.remove('active');
+                                }
+                            }
                         }
 
                         observer.unobserve(entry.target);
@@ -1603,6 +1712,8 @@
                     const suffixEl = card.querySelector('.price-suffix');
                     const dailyEl = card.querySelector('.monthly-equivalent span');
                     const currencyEl = card.querySelector('.currency');
+                    const savingsTrackerEl = card.querySelector('.savings-tracker-banner');
+                    const savingsTextEl = card.querySelector('.savings-tracker-text');
                     
                     const plan = currency.plans[index];
                     const targetVal = isYearly ? plan.yearly : plan.monthly;
@@ -1633,6 +1744,21 @@
                     if (dailyEl) {
                         dailyEl.innerText = dailyTextVal;
                     }
+
+                    if (savingsTrackerEl && savingsTextEl) {
+                        if (isYearly) {
+                            savingsTextEl.innerText = plan.savingsYearly;
+                            savingsTrackerEl.classList.add('active');
+                            if (animate) {
+                                savingsTrackerEl.classList.add('pulse');
+                                setTimeout(() => {
+                                    savingsTrackerEl.classList.remove('pulse');
+                                }, 800);
+                            }
+                        } else {
+                            savingsTrackerEl.classList.remove('active');
+                        }
+                    }
                 });
             }
 
@@ -1648,12 +1774,6 @@
                     currentCurrency = e.target.value;
                     updatePricing(true);
                 });
-            }
-
-            if (toggleBtn && toggleMonthly && toggleYearly) {
-                toggleBtn.addEventListener('click', () => updateBilling(!isYearly));
-                toggleMonthly.addEventListener('click', () => updateBilling(false));
-                toggleYearly.addEventListener('click', () => updateBilling(true));
             }
         });
     </script>
