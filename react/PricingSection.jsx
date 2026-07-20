@@ -103,6 +103,7 @@ export default function PricingSection() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const cardRefs = useRef([]);
     const dropdownRef = useRef(null);
+    const mouseGlowRef = useRef(null);
 
     const flags = { BDT: '🇧🇩', USD: '🇺🇸', EUR: '🇪🇺', TRY: '🇹🇷', IRR: '🇮🇷' };
 
@@ -115,6 +116,17 @@ export default function PricingSection() {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (mouseGlowRef.current) {
+                mouseGlowRef.current.style.left = e.clientX + 'px';
+                mouseGlowRef.current.style.top = e.clientY + 'px';
+            }
+        };
+        document.addEventListener('mousemove', handleMouseMove);
+        return () => document.removeEventListener('mousemove', handleMouseMove);
+    }, []);;
 
     // Currency Definitions Config
     const currencyData = {
@@ -257,7 +269,13 @@ export default function PricingSection() {
                 </defs>
             </svg>
 
-            <div className="ambient-background"></div>
+            <div className="ambient-background">
+                <div className="ambient-blob blob-1"></div>
+                <div className="ambient-blob blob-2"></div>
+                <div className="ambient-blob blob-3"></div>
+            </div>
+            <div className="grid-overlay"></div>
+            <div className="mouse-glow" ref={mouseGlowRef}></div>
             <div className="noise-overlay"></div>
 
             <section className="pricing-section">
