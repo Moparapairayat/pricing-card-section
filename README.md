@@ -29,6 +29,12 @@
   <img src="https://img.shields.io/badge/Build-Passing-10b981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build" />
 </p>
 
+<!-- Live Animated GIF Preview -->
+<p align="center">
+  <br />
+  <img src="assets/pricingcard.gif" alt="Mopara Pair Ayat Pricing Section Animation Preview" width="100%" />
+</p>
+
 ---
 
 </div>
