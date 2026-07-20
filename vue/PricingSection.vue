@@ -519,6 +519,8 @@ function selectCurrency(key) {
             <div class="electric-glow-layer-1"></div>
             <div class="electric-glow-layer-2"></div>
           </div>
+          <div class="electric-overlay-1"></div>
+          <div class="electric-overlay-2"></div>
           <div class="electric-background-glow"></div>
 
           <div class="card card-ultimate" @mousemove="handleSpotlight">

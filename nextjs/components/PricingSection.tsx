@@ -512,6 +512,8 @@ export default function PricingSection() {
               <div className="electric-glow-layer-1"/>
               <div className="electric-glow-layer-2"/>
             </div>
+            <div className="electric-overlay-1"/>
+            <div className="electric-overlay-2"/>
             <div className="electric-background-glow"/>
             <div className="card card-ultimate" onMouseMove={handleSpotlight}>
               <div className="spotlight-overlay"/>

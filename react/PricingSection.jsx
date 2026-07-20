@@ -606,12 +606,12 @@ export default function PricingSection() {
                     >
                         {/* Electric Border Layers */}
                         <div className="electric-inner-container">
-                            <div className="electric-border-outer">
-                                <div className="main-card-electric"></div>
-                            </div>
+                            <div className="electric-border-outer"><div className="main-card-electric"></div></div>
                             <div className="electric-glow-layer-1"></div>
                             <div className="electric-glow-layer-2"></div>
                         </div>
+                        <div className="electric-overlay-1"></div>
+                        <div className="electric-overlay-2"></div>
                         <div className="electric-background-glow"></div>
 
                         <div className="card card-ultimate" onMouseMove={handleMouseMoveSpotlight}>
