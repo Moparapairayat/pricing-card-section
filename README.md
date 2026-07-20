@@ -4,12 +4,14 @@
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue.js" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
 A state-of-the-art, high-converting SaaS pricing section designed for **Mopara Pair Ayat**. Featuring elegant micro-interactions, responsive glassmorphism cards, dynamic price toggle transitions, and a flagship electric animated border experience.
 
-Built entirely with pure HTML5, CSS3, and JavaScript—zero frameworks, zero external dependencies, ultra-lightweight.
+Available for multiple frameworks — pick your stack and drop it in.
 
 ---
 
@@ -17,7 +19,8 @@ Built entirely with pure HTML5, CSS3, and JavaScript—zero frameworks, zero ext
 
 The repository is organized into distinct versions for ease of integration:
 - 📂 [`/html`](file:///d:/pricing-card-section/html) — Vanilla HTML5, CSS3, and JavaScript version.
-- 📂 [`/react`](file:///d:/pricing-card-section/react) — Scopes React component version.
+- 📂 [`/react`](file:///d:/pricing-card-section/react) — React 18 component (JSX + CSS).
+- 📂 [`/vue`](file:///d:/pricing-card-section/vue) — Vue 3 component (Composition API, `<script setup>`).
 
 ---
 
