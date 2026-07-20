@@ -96,7 +96,7 @@ function App() {
 
 ## ✨ Premium UI/UX Features
 
-- **Live Currency Selector:** Integrates a glassmorphism currency select dropdown supporting BDT (৳), USD ($), EUR (€), TRY (₺), and IRR (﷼) that converts pricing, daily rates, and triggers numerical transitions dynamically.
+- **Live Currency Selector:** Custom interactive glassmorphic dropdown with country flag emojis, spring cubic-bezier transitions, purple glow hover states, and outside-click dismissal. Supports BDT (৳), USD ($), EUR (€), TRY (₺), and IRR (﷼) converting all values dynamically.
 - **Interactive Feature Tooltips:** CSS-driven tooltips next to capabilities that show rich context on hover with zero javascript overhead.
 - **Visual Savings Tracker:** Dynamic, coupon-style badge highlighting precise yearly savings per currency, pulsing with a green glow when users toggle cycles or switch currencies.
 

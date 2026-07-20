@@ -100,7 +100,21 @@ export default function PricingSection() {
     const [currency, setCurrency] = useState('BDT');
     const [visibleCards, setVisibleCards] = useState({ 0: false, 1: false, 2: false });
     const [pulseActive, setPulseActive] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const cardRefs = useRef([]);
+    const dropdownRef = useRef(null);
+
+    const flags = { BDT: '🇧🇩', USD: '🇺🇸', EUR: '🇪🇺', TRY: '🇹🇷', IRR: '🇮🇷' };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     // Currency Definitions Config
     const currencyData = {
@@ -263,19 +277,38 @@ export default function PricingSection() {
                         Yearly <span className="discount-badge">Save 20%</span>
                     </span>
 
-                    <div className="currency-selector-wrapper">
-                        <select
-                            id="currency-select"
-                            value={currency}
-                            onChange={(e) => setCurrency(e.target.value)}
-                            aria-label="Select Currency"
-                        >
-                            <option value="BDT">৳ BDT</option>
-                            <option value="USD">$ USD</option>
-                            <option value="EUR">€ EUR</option>
-                            <option value="TRY">₺ TRY</option>
-                            <option value="IRR">﷼ IRR</option>
-                        </select>
+                    <div className="currency-selector-wrapper" ref={dropdownRef}>
+                        <div className={`custom-dropdown ${dropdownOpen ? 'open' : ''}`}>
+                            <button 
+                                className="dropdown-trigger" 
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                                aria-haspopup="listbox" 
+                                aria-expanded={dropdownOpen}
+                            >
+                                <span className="selected-flag">{flags[currency]}</span>
+                                <span className="selected-text">{currentCurrency.symbol} {currency}</span>
+                                <svg className="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </button>
+                            <ul className="dropdown-menu" role="listbox">
+                                {Object.keys(currencyData).map((currKey) => (
+                                    <li 
+                                        key={currKey}
+                                        className={`dropdown-item ${currency === currKey ? 'active' : ''}`} 
+                                        role="option" 
+                                        aria-selected={currency === currKey}
+                                        onClick={() => {
+                                            setCurrency(currKey);
+                                            setDropdownOpen(false);
+                                        }}
+                                    >
+                                        <span className="flag">{flags[currKey]}</span>
+                                        <span className="currency-code">{currKey} ({currencyData[currKey].symbol})</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
